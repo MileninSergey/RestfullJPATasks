@@ -1,6 +1,8 @@
 package org.example.restfulljpatasks.controller;
 
+import jakarta.validation.Valid;
 import org.example.restfulljpatasks.exceptions.InvalidTaskDataTypeException;
+import org.example.restfulljpatasks.module.dto.TaskDTO;
 import org.example.restfulljpatasks.module.entity.Task;
 import org.example.restfulljpatasks.repositoriy.TaskRepository;
 import org.example.restfulljpatasks.service.TaskService;
@@ -19,10 +21,15 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @PostMapping("/create/bulk")
+    public List<Task> createTasks(@Valid @RequestBody TaskDTO[] taskDTOArray) throws InvalidTaskDataTypeException {
+        return taskService.createTasks(taskDTOArray);
+    }
+
     //localhost:8080/tasks/create
     @PostMapping("/create")
-    public Task createTask (@RequestBody Task task) throws InvalidTaskDataTypeException {
-        return taskService.createTask(task);
+    public Task createTask (@Valid @RequestBody TaskDTO taskDTO) throws InvalidTaskDataTypeException {
+        return taskService.createTask(taskDTO);
     }
 
     //localhost:8080/tasks/delete
