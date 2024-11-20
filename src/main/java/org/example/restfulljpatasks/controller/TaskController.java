@@ -1,17 +1,16 @@
 package org.example.restfulljpatasks.controller;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+
 import org.example.restfulljpatasks.exceptions.InvalidTaskDataTypeException;
 import org.example.restfulljpatasks.module.dto.TaskDTO;
 import org.example.restfulljpatasks.module.entity.Task;
 import org.example.restfulljpatasks.service.TaskService;
-import org.example.restfulljpatasks.service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,9 +30,11 @@ public class TaskController {
         return taskService.createTasks(taskDTOArray);
     }
 
+
     //localhost:8080/tasks/create
     @PostMapping("/create")
-    public Task createTask(@Valid @RequestBody TaskDTO taskDTO) throws InvalidTaskDataTypeException {
+
+    public Task createTask (@Valid @RequestBody TaskDTO taskDTO) throws InvalidTaskDataTypeException {
         return taskService.createTask(taskDTO);
     }
 
@@ -54,18 +55,11 @@ public class TaskController {
     }
 
 
-
-
     //localhost:8080/tasks/
     @PutMapping()
     public Task putTask(@RequestBody Task task) {
         return taskService.putTask(task);
     }
 
-    //localhost:8080/tasks/
-    @PatchMapping()
-    public Task patchTask(@RequestBody Task task) {
-        return taskService.patchTask(task);
-    }
 
 }

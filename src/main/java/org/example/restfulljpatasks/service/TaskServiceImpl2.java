@@ -37,10 +37,7 @@ public class TaskServiceImpl2 implements TaskService{
         return null;
     }
 
-    @Override
-    public Task patchTask(Task task) {
-        return null;
-    }
+
 
     @Override
     public Page<Task> getTaskPaginated(Pageable pageable) {
